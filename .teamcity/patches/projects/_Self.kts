@@ -35,5 +35,11 @@ changeProject(DslContext.projectId) {
         update {
             param("OctoProject", "Onion Architecture DotNet 7 Container Apps")
         }
+        expect {
+            param("OctoSpace", "Spaces-195")
+        }
+        update {
+            param("OctoSpace", "Spaces-83")
+        }
     }
 }
