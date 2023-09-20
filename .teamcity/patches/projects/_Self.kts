@@ -17,5 +17,11 @@ changeProject(DslContext.projectId) {
         update {
             param("AzAppId", "949717e5-4c7e-4c3d-bf28-534dc99aa45b")
         }
+        expect {
+            password("AzPassword", "credentialsJSON:b66a8739-aa0b-4987-a245-07c6907bdd01", label = "AzPassword")
+        }
+        update {
+            password("AzPassword", "credentialsJSON:ea1558cd-1d4f-4a20-b833-b1d794d56246", label = "AzPassword")
+        }
     }
 }
