@@ -23,5 +23,11 @@ changeProject(DslContext.projectId) {
         update {
             password("AzPassword", "credentialsJSON:ea1558cd-1d4f-4a20-b833-b1d794d56246", label = "AzPassword")
         }
+        expect {
+            password("OctoApiKey", "credentialsJSON:959b363e-7a9f-4706-86fa-532f285020e7", label = "OctoApiKey")
+        }
+        update {
+            password("OctoApiKey", "credentialsJSON:111569ae-279e-4a0c-8211-67b8b4f8fc41", label = "OctoApiKey")
+        }
     }
 }
