@@ -68,6 +68,7 @@ changeBuildType(RelativeId("IntegrationBuild")) {
     steps {
         update<NuGetPublishStep>(2) {
             clearConditions()
+            serverUrl = "%teamcity.nuget.feed.httpAuth.OnionArchitectureExample.Onion_Architecture_Container_Apps.v3%"
             apiKey = "credentialsJSON:dd6dcea7-88fc-42ac-9afe-d3ead71deecc"
         }
     }
