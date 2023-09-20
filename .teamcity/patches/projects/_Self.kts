@@ -2,6 +2,8 @@ package patches.projects
 
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.Project
+import jetbrains.buildServer.configs.kotlin.projectFeatures.DockerRegistryConnection
+import jetbrains.buildServer.configs.kotlin.projectFeatures.dockerRegistry
 import jetbrains.buildServer.configs.kotlin.ui.*
 
 /*
@@ -52,6 +54,23 @@ changeProject(DslContext.projectId) {
         }
         update {
             param("RegistryLogin", "onionarchitecturedotnet7acr.azurecr.io")
+        }
+    }
+
+    features {
+        val feature1 = find<DockerRegistryConnection> {
+            dockerRegistry {
+                id = "PROJECT_EXT_3"
+                name = "Onion-Arch ACR"
+                url = "onionarchitecturedotnet7containers.azurecr.io"
+                userName = "767d5e60-4d25-4794-9a4d-f714fab829e0"
+                password = "credentialsJSON:b66a8739-aa0b-4987-a245-07c6907bdd01"
+            }
+        }
+        feature1.apply {
+            url = "onionarchitecturedotnet7acr.azurecr.io"
+            userName = "949717e5-4c7e-4c3d-bf28-534dc99aa45b"
+            password = "credentialsJSON:ea1558cd-1d4f-4a20-b833-b1d794d56246"
         }
     }
 }
