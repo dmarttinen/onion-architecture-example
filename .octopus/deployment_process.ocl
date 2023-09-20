@@ -43,7 +43,7 @@ step "create-resource-group" {
                 
                 ###################################################################
                 & az group create --name $ResourceGroupName --location $az_location
-                EOT
+                    EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
@@ -177,7 +177,7 @@ step "get-db-connection-string" {
                 
                 
                 
-                EOT
+                    EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
@@ -225,7 +225,7 @@ step "deploy-an-azure-resource-manager-template-1" {
                     }
                   ]
                 }
-                EOT
+                    EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"location\":{\"value\":\"#{az_location}\"},\"environment_name\":{\"value\":\"#{container_app_environment_name}\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
@@ -351,7 +351,7 @@ step "deploy-an-azure-resource-manager-template-2" {
                     }
                   ]
                 }
-                EOT
+                    EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"containerappName\":{\"value\":\"#{container_app_name}\"},\"location\":{\"value\":\"#{az_location}\"},\"environment_name\":{\"value\":\"#{container_app_environment_name}\"},\"container_image\":{\"value\":\"#{container_image}\"},\"registry_password\":{\"value\":\"#{az_login_appkey}\"},\"connection_string\":{\"value\":\"#{connection_string}\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
@@ -420,7 +420,7 @@ step "get-container-app-fqdn" {
                 
                 
                 
-                EOT
+                    EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
@@ -490,7 +490,7 @@ step "add-revision-to-container-app" {
                 & az containerapp update --name $container_app_name --resource-group $ResourceGroupName --image $container_image
                 & az containerapp update --name $container_app_name --resource-group $ResourceGroupName --set-env-vars ConnectionStrings__SqlConnectionString=$connection_string
                 ###################################################################
-                EOT
+                    EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
             OctopusUseBundledTooling = "False"
@@ -632,7 +632,7 @@ step "create-log-analytics-workspace" {
                     }
                   ]
                 }
-                EOT
+                    EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"workspaceName\":{\"value\":\"#{LogAnalyticsWorkspaceName}\"},\"location\":{\"value\":\"#{az_location}\"},\"sku\":{\"value\":\"PerGB2018\"},\"retentionInDays\":{\"value\":120},\"resourcePermissions\":{\"value\":\"True\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
@@ -701,7 +701,7 @@ step "create-app-insights" {
                     }
                   ]
                 }
-                EOT
+                    EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"name\":{\"value\":\"#{AppInsightsName}\"},\"regionId\":{\"value\":\"#{az_location}\"},\"tagsArray\":{\"value\":{}},\"workspaceResourceId\":{\"value\":\"/subscriptions/#{Octopus.Action.Azure.SubscriptionId}/resourcegroups/#{ResourceGroupName}/providers/microsoft.operationalinsights/workspaces/#{LogAnalyticsWorkspaceName}\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
@@ -796,7 +796,7 @@ step "create-availability-test" {
                         }
                     ]
                 }
-                EOT
+                    EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"webtests_healthcheck_name\":{\"value\":\"#{AvailabilityTestName}\"},\"healthcheck_url\":{\"value\":\"http://#{containerAppURL}/_healthcheck\"},\"location\":{\"value\":\"#{az_location}\"},\"hidden-link\":{\"value\":\"hidden-link:/subscriptions/#{Octopus.Action.Azure.SubscriptionId}/resourceGroups/#{ResourceGroupName}/providers/microsoft.insights/components/#{AppInsightsName}\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
@@ -988,7 +988,7 @@ step "create-automation-account" {
                     ]   
                 }
                 
-                EOT
+                    EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"automationAccountName\":{\"value\":\"#{AutomationAccount}\"},\"location\":{\"value\":\"#{az_location}\"},\"tags\":{\"value\":{}},\"runbookName\":{\"value\":\"#{azrunbookname}\"},\"webhookName\":{\"value\":\"#{webhookName}\"},\"webhookExpiryTime\":{\"value\":\"2025-08-31T23:59:59Z\"},\"contentURL\":{\"value\":\"https://raw.githubusercontent.com/ClearMeasureLabs/onion-architecture-dotnet-7-container-apps/main/run_runbook.ps1\"},\"apiKeyValue\":{\"value\":\"#{azrunbookAPI}\"},\"envNameValue\":{\"value\":\"#{Octopus.Environment.Name}\"},\"octoProjectValue\":{\"value\":\"#{Octopus.Project.Name}\"},\"octoURLValue\":{\"value\":\"#{OctoInstanceURL}\"},\"octoRunbookValue\":{\"value\":\"#{OctoRunbookName}\"},\"octoSpaceValue\":{\"value\":\"#{Octopus.Space.Name}\"},\"webhookId\":{\"value\":\"/subscriptions/#{Octopus.Action.Azure.SubscriptionId}/resourceGroups/#{ResourceGroupName}/providers/Microsoft.Automation/automationAccounts/TDD-releases-28529-automation/webhooks/#{webhookName}\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
@@ -1037,7 +1037,7 @@ step "create-automation-webhook" {
                 Set-OctopusVariable -name "webhookUri" -value $uri
                 
                 
-                EOT
+                    EOT
             Octopus.Action.Script.ScriptSource = "Inline"
             Octopus.Action.Script.Syntax = "PowerShell"
         }
@@ -1114,7 +1114,7 @@ step "create-email-alert-action" {
                         }
                     ]
                 }
-                EOT
+                    EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"actionGroups_runRunbook_name\":{\"value\":\"#{ActionName}\"},\"automationAccounts_TDD_releases_28553_automation_externalid\":{\"value\":\"/subscriptions/#{Octopus.Action.Azure.SubscriptionId}/resourceGroups/#{ResourceGroupName}/providers/Microsoft.Automation/automationAccounts/#{AutomationAccount}\"},\"uri\":{\"value\":\"#{Octopus.Action[Create Automation Webhook].Output.webhookUri}\"},\"webhookId\":{\"value\":\"#{webhookName}\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
@@ -1197,7 +1197,7 @@ step "create-low-availability-metric-alert" {
                         }
                     ]
                 }
-                EOT
+                    EOT
             Octopus.Action.Azure.ResourceGroupTemplateParameters = "{\"metricAlerts_Prod_UI_Low_Availability_name\":{\"value\":\"#{LowAvailabilityAlertName}\"},\"components_onion_architecture_dotnet_7_containers_Prod_Insights_externalid\":{\"value\":\"/subscriptions/#{Octopus.Action.Azure.SubscriptionId}/resourceGroups/#{ResourceGroupName}/providers/microsoft.insights/components/#{AppInsightsName}\"},\"actionGroups_Email_Alert_externalid\":{\"value\":\"/subscriptions/#{Octopus.Action.Azure.SubscriptionId}/resourceGroups/#{ResourceGroupName}/providers/microsoft.insights/actionGroups/#{ActionName}\"}}"
             Octopus.Action.Azure.TemplateSource = "Inline"
             OctopusUseBundledTooling = "False"
