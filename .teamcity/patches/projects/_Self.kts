@@ -47,5 +47,11 @@ changeProject(DslContext.projectId) {
         update {
             param("OctoSpaceName", "Dale Marttinen")
         }
+        expect {
+            param("RegistryLogin", "onionarchitecturedotnet7containers.azurecr.io")
+        }
+        update {
+            param("RegistryLogin", "onionarchitecturedotnet7acr.azurecr.io")
+        }
     }
 }
