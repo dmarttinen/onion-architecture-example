@@ -54,12 +54,6 @@ variable "container_image" {
     }
 }
 
-variable "registry_login_server" {
-    value "onionarchitecturedotnet7containers.azurecr.io" {
-        environment = ["tdd", "uat", "prod"]
-    }
-}
-
 variable "AzureAccount" {
     type = "AzureAccount"
 
@@ -219,16 +213,22 @@ variable "azrunbookname" {
     value "octo-runbook" {}
 }
 
+variable "OctoInstanceURL" {
+    value "https://clearmeasure.octopus.app/" {}
+}
+
 variable "EnsureEnvironmentsExist" {
-    value "False" {
+    value "True" {
         environment = ["uat"]
     }
 
-    value "False" {
+    value "True" {
         environment = ["prod"]
     }
 }
 
-variable "OctoInstanceURL" {
-    value "https://clearmeasure.octopus.app/" {}
+variable "registry_login_server" {
+    value "onionarchitecturedotnet7acr.azurecr.io" {
+        environment = ["tdd", "uat", "prod"]
+    }
 }
